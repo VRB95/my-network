@@ -11,10 +11,10 @@ import { emptyHost, Host } from "../functions/exports";
 function HostPage() {
 
   const [currentHost, setCurrentHost] = createSignal<Host>(emptyHost);
+  const params = useParams();
 
   onMount(async () => {
-    const params = useParams();
-    const host = await apiGetHost(params.id);
+    const host = await apiGetHost(params.id ?? "0");
 
     setCurrentHost(host);
   });

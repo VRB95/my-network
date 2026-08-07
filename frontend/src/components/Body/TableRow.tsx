@@ -41,29 +41,29 @@ function TableRow(_props: any) {
 
   return (
     <tr>
-      <td class="opacity-50">{_props.index}.</td>
-      <td>
+      <td class="opacity-50 wyl-cell-index">{_props.index}.</td>
+      <td class="wyl-cell-name">
         <Show
           when={editNames()}
           fallback={name()}
         >
-          <input type="text" class="form-control" value={name()}
+          <input type="text" class="form-control form-control-sm" value={name()}
             onInput={e => handleInput(e.target.value)}></input>
         </Show>
       </td>
-      <td>{_props.host.Iface}</td>
-      <td><a href={"http://" + _props.host.IP} target="_blank">{_props.host.IP}</a></td>
-      <td>{_props.host.Mac}</td>
-      <td title={_props.host.Hw}>{_props.host.Hw.slice(0,12)+".."}</td>
-      <td>{_props.host.Date}</td>
-      <td>
+      <td class="wyl-cell-iface">{_props.host.Iface}</td>
+      <td class="wyl-cell-ip"><a href={"http://" + _props.host.IP} target="_blank">{_props.host.IP}</a></td>
+      <td class="wyl-cell-mac">{_props.host.Mac}</td>
+      <td class="wyl-cell-hw" title={_props.host.Hw}>{_props.host.Hw.slice(0,12)+".."}</td>
+      <td class="wyl-cell-date">{_props.host.Date}</td>
+      <td class="wyl-cell-known">
         <div class="form-check form-switch">
           <input class="form-check-input" type="checkbox" checked={known}
             onClick={handleToggle}></input>
         </div>
       </td>
-      <td>{now}</td>
-      <td>
+      <td class="wyl-cell-now">{now}</td>
+      <td class="wyl-cell-action">
         <Show
           when={editNames()}
           fallback={

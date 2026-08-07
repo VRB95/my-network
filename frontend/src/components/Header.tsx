@@ -32,12 +32,12 @@ function Header() {
     <>
     <link rel="stylesheet" href={iconsPath()}></link> {/* icons */}
     <link rel="stylesheet" href={themePath()}></link> {/* theme */}
-    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary wyl-navbar">
       <div class="container-lg">
         <a class="navbar-brand" href="/">
           <img src="/fs/public/favicon.png" style="width: 2em"/>
         </a>
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <ul class="navbar-nav me-auto mb-0">
           <li class="nav-item">
             <a class="nav-link active" href="/" title="Home">Home</a>
           </li>
@@ -50,7 +50,7 @@ function Header() {
         </ul>
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active fs-3 ms-md-2" target="_blank" href="https://github.com/aceberg/WatchYourLAN" title="Github"><i class="bi bi-github"></i></a>
+            <a class="nav-link active wyl-github-link ms-md-2" target="_blank" href="https://github.com/aceberg/WatchYourLAN" title="Github"><i class="bi bi-github"></i></a>
           </li>
         </ul>
       </div>
