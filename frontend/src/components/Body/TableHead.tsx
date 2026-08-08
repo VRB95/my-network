@@ -26,10 +26,10 @@ function TableHead() {
   return (
     <thead>
       <tr>
-        <th class="wyl-col-index"></th>
+        <th class="mn-col-index"></th>
         <For each={["Name", "Iface", "IP", "MAC", "Hardware", "Date", "Known", "On"]}>{(key) =>
           <th 
-            class={"wyl-col-" + key.toLowerCase()}
+            class={"mn-col-" + key.toLowerCase()}
             style={key === sortField() ? "color: var(--bs-primary);" : ''}
           >{key} <i
             class="bi bi-sort-down-alt my-btn"
@@ -37,7 +37,7 @@ function TableHead() {
             title={"Sort by " + key}
           ></i></th>
         }</For>
-        <th class="wyl-col-action" title="Edit"><i class="bi bi-pencil-fill"></i></th>
+        <th class="mn-col-action" title="Edit"><i class="bi bi-pencil-fill"></i></th>
       </tr>
     </thead>
   )

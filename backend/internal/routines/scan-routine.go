@@ -3,14 +3,14 @@ package routines
 import (
 	"time"
 
-	"github.com/aceberg/WatchYourLAN/internal/arp"
-	"github.com/aceberg/WatchYourLAN/internal/check"
-	"github.com/aceberg/WatchYourLAN/internal/conf"
-	"github.com/aceberg/WatchYourLAN/internal/gdb"
-	"github.com/aceberg/WatchYourLAN/internal/influx"
-	"github.com/aceberg/WatchYourLAN/internal/models"
-	"github.com/aceberg/WatchYourLAN/internal/notify"
-	"github.com/aceberg/WatchYourLAN/internal/prometheus"
+	"myNetwork/internal/arp"
+	"myNetwork/internal/check"
+	"myNetwork/internal/conf"
+	"myNetwork/internal/gdb"
+	"myNetwork/internal/influx"
+	"myNetwork/internal/models"
+	"myNetwork/internal/notify"
+	"myNetwork/internal/prometheus"
 )
 
 func startScan(quit chan bool) {

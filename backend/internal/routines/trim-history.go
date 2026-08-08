@@ -4,8 +4,8 @@ import (
 	"log/slog"
 	"time"
 
-	"github.com/aceberg/WatchYourLAN/internal/conf"
-	"github.com/aceberg/WatchYourLAN/internal/gdb"
+	"myNetwork/internal/conf"
+	"myNetwork/internal/gdb"
 )
 
 // HistoryTrim - routine for History

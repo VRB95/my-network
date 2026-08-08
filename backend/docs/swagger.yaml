@@ -101,7 +101,7 @@ info:
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
-  title: WatchYourLAN API
+  title: myNetwork API
   version: "0.1"
 paths:
   /all:

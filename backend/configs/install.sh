@@ -1,4 +1,4 @@
 #!/bin/sh
 
-cp watchyourlan /usr/bin/
-cp watchyourlan.service /lib/systemd/system/
+cp mynetwork /usr/bin/
+cp mynetwork.service /lib/systemd/system/

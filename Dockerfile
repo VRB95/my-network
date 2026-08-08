@@ -12,7 +12,7 @@ RUN go mod download
 COPY backend/ .
 
 ARG TARGETPLATFORM
-RUN CGO_ENABLED=0 xx-go build -ldflags='-w -s' -o /WatchYourLAN ./cmd/WatchYourLAN
+RUN CGO_ENABLED=0 xx-go build -ldflags='-w -s' -o /mynetwork ./cmd/myNetwork
 
 
 FROM alpine
@@ -22,6 +22,6 @@ WORKDIR /app
 RUN apk add --no-cache arp-scan tzdata \
     && mkdir /data
 
-COPY --from=builder /WatchYourLAN /app/
+COPY --from=builder /mynetwork /app/
 
-ENTRYPOINT ["./WatchYourLAN"]
+ENTRYPOINT ["./mynetwork"]

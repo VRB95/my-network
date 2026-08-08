@@ -41,8 +41,8 @@ function TableRow(_props: any) {
 
   return (
     <tr>
-      <td class="opacity-50 wyl-cell-index">{_props.index}.</td>
-      <td class="wyl-cell-name">
+      <td class="opacity-50 mn-cell-index">{_props.index}.</td>
+      <td class="mn-cell-name">
         <Show
           when={editNames()}
           fallback={name()}
@@ -51,19 +51,19 @@ function TableRow(_props: any) {
             onInput={e => handleInput(e.target.value)}></input>
         </Show>
       </td>
-      <td class="wyl-cell-iface">{_props.host.Iface}</td>
-      <td class="wyl-cell-ip"><a href={"http://" + _props.host.IP} target="_blank">{_props.host.IP}</a></td>
-      <td class="wyl-cell-mac">{_props.host.Mac}</td>
-      <td class="wyl-cell-hw" title={_props.host.Hw}>{_props.host.Hw.slice(0,12)+".."}</td>
-      <td class="wyl-cell-date">{_props.host.Date}</td>
-      <td class="wyl-cell-known">
+      <td class="mn-cell-iface">{_props.host.Iface}</td>
+      <td class="mn-cell-ip"><a href={"http://" + _props.host.IP} target="_blank">{_props.host.IP}</a></td>
+      <td class="mn-cell-mac">{_props.host.Mac}</td>
+      <td class="mn-cell-hw" title={_props.host.Hw}>{_props.host.Hw.slice(0,12)+".."}</td>
+      <td class="mn-cell-date">{_props.host.Date}</td>
+      <td class="mn-cell-known">
         <div class="form-check form-switch">
           <input class="form-check-input" type="checkbox" checked={known}
             onClick={handleToggle}></input>
         </div>
       </td>
-      <td class="wyl-cell-now">{now}</td>
-      <td class="wyl-cell-action">
+      <td class="mn-cell-now">{now}</td>
+      <td class="mn-cell-action">
         <Show
           when={editNames()}
           fallback={

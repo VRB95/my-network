@@ -1,5 +1,5 @@
-PKG_NAME=WatchYourLAN
-USR_NAME=aceberg
+PKG_NAME=myNetwork
+USR_NAME=vesa-raul-bogdan
 
 build:
 	npm run build && \

@@ -1,11 +1,11 @@
 {
-  "name": "watchyourlan",
+  "name": "mynetwork",
   "private": true,
   "version": "2.1.4",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "dev:full": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"if (-not (Get-NetTCPConnection -LocalPort 8840 -ErrorAction SilentlyContinue)) { Start-Process powershell -ArgumentList '-NoExit','-Command','cd ..\\\\backend; go run ./cmd/WatchYourLAN -d .\\\\data' }; npm run dev\"",
+    "dev:full": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"if (-not (Get-NetTCPConnection -LocalPort 8840 -ErrorAction SilentlyContinue)) { Start-Process powershell -ArgumentList '-NoExit','-Command','cd ..\\\\backend; go run ./cmd/myNetwork -d .\\\\data' }; npm run dev\"",
     "build": "tsc -b && vite build",
     "preview": "vite preview"
   },

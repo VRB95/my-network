@@ -12,16 +12,16 @@ body {
     padding-right: .6rem;
 }
 
-.wyl-navbar {
+.mn-navbar {
     --bs-navbar-padding-y: .18rem;
     min-height: 2.45rem;
 }
 
-.wyl-navbar .container-lg {
+.mn-navbar .container-lg {
     min-height: 2.1rem;
 }
 
-.wyl-navbar .navbar-brand {
+.mn-navbar .navbar-brand {
     display: inline-flex;
     align-items: center;
     padding-top: 0;
@@ -29,53 +29,53 @@ body {
     margin-right: .55rem;
 }
 
-.wyl-navbar .navbar-brand img {
+.mn-navbar .navbar-brand img {
     width: 1.3em !important;
 }
 
-.wyl-navbar .nav-link {
+.mn-navbar .nav-link {
     padding: .25rem .42rem;
     font-size: .82rem;
     line-height: 1.15;
 }
 
-.wyl-github-link {
+.mn-github-link {
     font-size: 1.1rem !important;
     padding-left: .35rem !important;
     padding-right: .35rem !important;
 }
 
-.wyl-panel {
+.mn-panel {
     border-radius: .5rem;
     overflow: hidden;
 }
 
-.wyl-panel .card-header {
+.mn-panel .card-header {
     padding: .45rem .55rem;
 }
 
-.wyl-panel .card-body {
+.mn-panel .card-body {
     padding: 0;
 }
 
-.wyl-toolbar .form-control,
-.wyl-toolbar .form-select,
-.wyl-toolbar .btn {
+.mn-toolbar .form-control,
+.mn-toolbar .form-select,
+.mn-toolbar .btn {
     min-height: 2rem;
 }
 
-.wyl-search {
+.mn-search {
     max-width: 11rem;
 }
 
-.wyl-table {
+.mn-table {
     margin-bottom: 0;
     table-layout: fixed;
     font-size: .84rem;
 }
 
-.wyl-table th,
-.wyl-table td {
+.mn-table th,
+.mn-table td {
     padding: .32rem .42rem;
     vertical-align: middle;
     white-space: nowrap;
@@ -83,58 +83,58 @@ body {
     text-overflow: ellipsis;
 }
 
-.wyl-table thead th {
+.mn-table thead th {
     font-size: .72rem;
     font-weight: 700;
     letter-spacing: 0;
     text-transform: uppercase;
 }
 
-.wyl-col-index,
-.wyl-col-action {
+.mn-col-index,
+.mn-col-action {
     width: 2.2rem;
 }
 
-.wyl-col-name {
+.mn-col-name {
     width: 18%;
 }
 
-.wyl-col-iface,
-.wyl-col-known,
-.wyl-col-on {
+.mn-col-iface,
+.mn-col-known,
+.mn-col-on {
     width: 4.8rem;
 }
 
-.wyl-col-ip {
+.mn-col-ip {
     width: 8.4rem;
 }
 
-.wyl-col-mac {
+.mn-col-mac {
     width: 10.6rem;
 }
 
-.wyl-col-hardware {
+.mn-col-hardware {
     width: 8rem;
 }
 
-.wyl-col-date {
+.mn-col-date {
     width: 9.5rem;
 }
 
-.wyl-cell-now,
-.wyl-cell-action,
-.wyl-cell-known {
+.mn-cell-now,
+.mn-cell-action,
+.mn-cell-known {
     text-align: center;
 }
 
-.wyl-cell-known .form-check {
+.mn-cell-known .form-check {
     display: inline-flex;
     min-height: 0;
     padding-left: 2.2em;
     margin-bottom: 0;
 }
 
-.wyl-cell-known .form-check-input {
+.mn-cell-known .form-check-input {
     margin-top: 0;
 }
 
@@ -162,60 +162,60 @@ body {
         padding-right: .45rem;
     }
 
-    .wyl-navbar {
+    .mn-navbar {
         min-height: 2.25rem;
     }
 
-    .wyl-navbar .container-lg {
+    .mn-navbar .container-lg {
         gap: .35rem;
         min-height: 2rem;
     }
 
-    .wyl-navbar .navbar-nav {
+    .mn-navbar .navbar-nav {
         flex-direction: row;
         gap: .12rem;
     }
 
-    .wyl-navbar .navbar-brand {
+    .mn-navbar .navbar-brand {
         margin-right: .35rem;
     }
 
-    .wyl-navbar .navbar-brand img {
+    .mn-navbar .navbar-brand img {
         width: 1.18em !important;
     }
 
-    .wyl-navbar .nav-link {
+    .mn-navbar .nav-link {
         padding: .22rem .32rem;
         font-size: .78rem;
     }
 
-    .wyl-github-link {
+    .mn-github-link {
         font-size: 1rem !important;
     }
 
-    .wyl-panel {
+    .mn-panel {
         border-left: 0;
         border-right: 0;
         border-radius: 0;
     }
 
-    .wyl-panel .card-header {
+    .mn-panel .card-header {
         padding: .45rem;
     }
 
-    .wyl-toolbar > [class*="col"] {
+    .mn-toolbar > [class*="col"] {
         margin-top: 0 !important;
         margin-bottom: 0 !important;
     }
 
-    .wyl-filter {
+    .mn-filter {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr auto;
         width: 100%;
     }
 
-    .wyl-filter > .form-select,
-    .wyl-filter > .btn {
+    .mn-filter > .form-select,
+    .mn-filter > .btn {
         width: 100%;
         border-radius: .25rem !important;
         font-size: .75rem;
@@ -223,30 +223,30 @@ body {
         padding-right: .35rem;
     }
 
-    .wyl-search {
+    .mn-search {
         flex: 1 1 auto;
         max-width: none;
     }
 
-    .wyl-table {
+    .mn-table {
         border-collapse: separate;
         border-spacing: 0 .38rem;
         padding: .15rem .45rem .5rem;
     }
 
-    .wyl-table thead {
+    .mn-table thead {
         display: none;
     }
 
-    .wyl-table,
-    .wyl-table tbody,
-    .wyl-table tr,
-    .wyl-table td {
+    .mn-table,
+    .mn-table tbody,
+    .mn-table tr,
+    .mn-table td {
         display: block;
         width: 100%;
     }
 
-    .wyl-table tr {
+    .mn-table tr {
         position: relative;
         display: grid;
         grid-template-columns: 1fr auto auto;
@@ -262,7 +262,7 @@ body {
         background: var(--bs-body-bg);
     }
 
-    .wyl-table td {
+    .mn-table td {
         padding: 0;
         border: 0;
         min-width: 0;
@@ -271,7 +271,7 @@ body {
         text-overflow: ellipsis;
     }
 
-    .wyl-cell-index {
+    .mn-cell-index {
         position: absolute;
         left: .55rem;
         top: .52rem;
@@ -279,17 +279,17 @@ body {
         font-size: .72rem;
     }
 
-    .wyl-cell-name {
+    .mn-cell-name {
         grid-area: name;
         font-weight: 700;
     }
 
-    .wyl-cell-ip {
+    .mn-cell-ip {
         grid-area: ip;
         font-size: .82rem;
     }
 
-    .wyl-cell-iface {
+    .mn-cell-iface {
         grid-area: iface;
         align-self: center;
         font-size: .74rem;
@@ -297,38 +297,38 @@ body {
         text-align: right;
     }
 
-    .wyl-cell-known {
+    .mn-cell-known {
         grid-area: known;
         align-self: center;
     }
 
-    .wyl-cell-now {
+    .mn-cell-now {
         grid-area: now;
         width: 1.3rem;
     }
 
-    .wyl-cell-action {
+    .mn-cell-action {
         grid-area: action;
         width: 1.5rem;
     }
 
-    .wyl-cell-mac {
+    .mn-cell-mac {
         grid-area: mac;
         font-size: .72rem;
         color: var(--bs-secondary-color);
     }
 
-    .wyl-cell-hw {
+    .mn-cell-hw {
         display: none !important;
     }
 
-    .wyl-cell-date {
+    .mn-cell-date {
         grid-area: date;
         font-size: .7rem;
         color: var(--bs-secondary-color);
     }
 
-    .wyl-cell-known .form-check {
+    .mn-cell-known .form-check {
         padding-left: 2rem;
     }
 }

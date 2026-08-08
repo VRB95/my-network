@@ -41,11 +41,11 @@ function About() {
           </tr>
           <tr>
             <td><b>Args for arp-scan</b></td>
-            <td>pass your own arguments to <code>arp-scan</code>. Enable <b>debug</b> log level to see resulting command. (Example: <code>-r 1</code>). See <a href="https://github.com/aceberg/WatchYourLAN/blob/main/docs/VLAN_ARP_SCAN.md" target="_blank">docs</a> for more</td>
+            <td>pass your own arguments to <code>arp-scan</code>. Enable <b>debug</b> log level to see resulting command. (Example: <code>-r 1</code>).</td>
           </tr>
           <tr>
             <td><b>Arp Strings</b></td>
-            <td>can setup scans for <code>vlans</code>, <code>docker0</code> and etcetera. See <a href="https://github.com/aceberg/WatchYourLAN/blob/main/docs/VLAN_ARP_SCAN.md" target="_blank">docs</a> for more</td>
+            <td>can setup scans for <code>vlans</code>, <code>docker0</code> and etcetera.</td>
           </tr>
           <tr>
             <td><b>Trim History</b></td>

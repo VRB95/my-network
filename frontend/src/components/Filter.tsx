@@ -26,7 +26,7 @@ function Filter() {
 
   return (
     <div class="row">
-      <div class="col input-group input-group-sm wyl-filter">
+      <div class="col input-group input-group-sm mn-filter">
         <select onChange={(event)=>{handleFilter("Iface", event)}} class="form-select form-select-sm" title="Filter by Iface" value={selectValue()}>
           <option value="" selected disabled>Iface</option>
           <For each={ifaces()}>{(iface) =>

@@ -617,7 +617,7 @@ var SwaggerInfo = &swag.Spec{
 	Host:             "",
 	BasePath:         "/api/",
 	Schemes:          []string{},
-	Title:            "WatchYourLAN API",
+	Title:            "myNetwork API",
 	Description:      "Lightweight network IP scanner written in Go",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,

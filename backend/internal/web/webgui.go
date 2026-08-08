@@ -6,11 +6,11 @@ import (
 	"log/slog"
 	"net/http"
 
-	"github.com/aceberg/WatchYourLAN/internal/api"
-	"github.com/aceberg/WatchYourLAN/internal/check"
-	"github.com/aceberg/WatchYourLAN/internal/conf"
-	"github.com/aceberg/WatchYourLAN/internal/prometheus"
 	"github.com/gin-gonic/gin"
+	"myNetwork/internal/api"
+	"myNetwork/internal/check"
+	"myNetwork/internal/conf"
+	"myNetwork/internal/prometheus"
 )
 
 // templFS - html templates
@@ -37,7 +37,7 @@ func Gui() {
 	address := conf.AppConfig.Host + ":" + conf.AppConfig.Port
 
 	slog.Info(colorCyan + "\n=================================== " +
-		"\n  WatchYourLAN Version: " + conf.AppConfig.Version +
+		"\n  myNetwork Version: " + conf.AppConfig.Version +
 		"\n  Config dir: " + conf.AppConfig.DirPath +
 		"\n  Default DB: " + conf.AppConfig.UseDB +
 		"\n  Log level: " + conf.AppConfig.LogLevel +

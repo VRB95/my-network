@@ -7,8 +7,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/linde12/gowol"
 
-	"github.com/aceberg/WatchYourLAN/internal/check"
-	"github.com/aceberg/WatchYourLAN/internal/portscan"
+	"myNetwork/internal/check"
+	"myNetwork/internal/portscan"
 )
 
 // getPortState godoc

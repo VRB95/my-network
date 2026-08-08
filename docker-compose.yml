@@ -6,9 +6,8 @@ services:
   #   restart: unless-stopped
   #   ports:
   #   - 8850:8850
-  wyl:
-    image: aceberg/watchyourlan           # dockerhub
-    # image: ghcr.io/aceberg/watchyourlan # or github
+  mynetwork:
+    image: mynetwork
     network_mode: "host"      
     restart: unless-stopped
     # uncomment those if you are using local node-bootstrap:
@@ -16,7 +15,7 @@ services:
     # depends_on:
     #   - node-bootstrap
     volumes:
-    - ~/.dockerdata/wyl:/data/WatchYourLAN
+    - ~/.dockerdata/mynetwork:/data/myNetwork
     environment:
       TZ: Asia/Novosibirsk              # required: needs your TZ for correct time
       IFACES: "enp4s0 wlxf4ec3892dd51"  # required: 1 or more interface

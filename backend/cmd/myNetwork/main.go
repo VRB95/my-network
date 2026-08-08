@@ -1,4 +1,4 @@
-// @title WatchYourLAN API
+// @title myNetwork API
 // @version 0.1
 // @description Lightweight network IP scanner written in Go
 // @contact.url   https://github.com/aceberg/WatchYourLAN
@@ -15,15 +15,15 @@ import (
 	// _ "net/http/pprof"
 
 	// Import Swagger docs
-	_ "github.com/aceberg/WatchYourLAN/docs"
+	_ "myNetwork/docs"
 
-	"github.com/aceberg/WatchYourLAN/internal/conf"
-	"github.com/aceberg/WatchYourLAN/internal/gdb"
-	"github.com/aceberg/WatchYourLAN/internal/routines"
-	"github.com/aceberg/WatchYourLAN/internal/web"
+	"myNetwork/internal/conf"
+	"myNetwork/internal/gdb"
+	"myNetwork/internal/routines"
+	"myNetwork/internal/web"
 )
 
-const dirPath = "/data/WatchYourLAN"
+const dirPath = "/data/myNetwork"
 const nodePath = ""
 
 func main() {

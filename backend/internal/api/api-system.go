@@ -5,11 +5,11 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/aceberg/WatchYourLAN/internal/conf"
-	"github.com/aceberg/WatchYourLAN/internal/gdb"
-	"github.com/aceberg/WatchYourLAN/internal/models"
-	"github.com/aceberg/WatchYourLAN/internal/notify"
-	"github.com/aceberg/WatchYourLAN/internal/routines"
+	"myNetwork/internal/conf"
+	"myNetwork/internal/gdb"
+	"myNetwork/internal/models"
+	"myNetwork/internal/notify"
+	"myNetwork/internal/routines"
 )
 
 // getVersion godoc

@@ -1,4 +1,4 @@
-module github.com/aceberg/WatchYourLAN
+module myNetwork
 
 go 1.25.1
 

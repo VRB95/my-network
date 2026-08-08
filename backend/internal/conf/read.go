@@ -5,8 +5,8 @@ import (
 
 	"github.com/spf13/viper"
 
-	"github.com/aceberg/WatchYourLAN/internal/check"
-	"github.com/aceberg/WatchYourLAN/internal/models"
+	"myNetwork/internal/check"
+	"myNetwork/internal/models"
 )
 
 func read(path string) (config models.Conf) {

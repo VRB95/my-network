@@ -14,12 +14,12 @@ function Body() {
   });
 
   return (
-    <div class="card border-primary wyl-panel">
+    <div class="card border-primary mn-panel">
       <div class="card-header">
         <CardHead></CardHead>
       </div>
       <div class="card-body table-responsive">
-        <table class="table table-striped table-hover wyl-table">
+        <table class="table table-striped table-hover mn-table">
           <TableHead></TableHead>
           <tbody>
             <For each={allHosts}>{(host, index) =>

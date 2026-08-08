@@ -3,7 +3,7 @@ package routines
 import (
 	"log/slog"
 
-	"github.com/aceberg/WatchYourLAN/internal/conf"
+	"myNetwork/internal/conf"
 )
 
 var (

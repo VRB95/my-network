@@ -9,8 +9,8 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promauto"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 
-	"github.com/aceberg/WatchYourLAN/internal/conf"
-	"github.com/aceberg/WatchYourLAN/internal/models"
+	"myNetwork/internal/conf"
+	"myNetwork/internal/models"
 )
 
 // Handler - display Prometheus metrics

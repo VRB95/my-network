@@ -6,9 +6,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/aceberg/WatchYourLAN/internal/conf"
-	"github.com/aceberg/WatchYourLAN/internal/gdb"
-	"github.com/aceberg/WatchYourLAN/internal/routines"
+	"myNetwork/internal/conf"
+	"myNetwork/internal/gdb"
+	"myNetwork/internal/routines"
 )
 
 func saveConfigHandler(c *gin.Context) {

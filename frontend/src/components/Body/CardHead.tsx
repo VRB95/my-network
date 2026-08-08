@@ -25,7 +25,7 @@ function CardHead() {
   };
 
   return (
-    <div class="row g-2 align-items-center wyl-toolbar">
+    <div class="row g-2 align-items-center mn-toolbar">
       <div class="col-md mt-1 mb-1">
         <div class="d-flex justify-left">
         <Filter></Filter>

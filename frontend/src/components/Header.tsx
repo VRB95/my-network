@@ -32,7 +32,7 @@ function Header() {
     <>
     <link rel="stylesheet" href={iconsPath()}></link> {/* icons */}
     <link rel="stylesheet" href={themePath()}></link> {/* theme */}
-    <nav class="navbar navbar-expand-md navbar-dark bg-primary wyl-navbar">
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary mn-navbar">
       <div class="container-lg">
         <a class="navbar-brand" href="/">
           <img src="/fs/public/favicon.png" style="width: 2em"/>
@@ -50,7 +50,7 @@ function Header() {
         </ul>
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active wyl-github-link ms-md-2" target="_blank" href="https://github.com/aceberg/WatchYourLAN" title="Github"><i class="bi bi-github"></i></a>
+            <a class="nav-link active mn-github-link ms-md-2" target="_blank" href="https://github.com/aceberg/WatchYourLAN" title="Original project"><i class="bi bi-github"></i></a>
           </li>
         </ul>
       </div>

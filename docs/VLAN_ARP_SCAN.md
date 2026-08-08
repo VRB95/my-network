@@ -2,7 +2,7 @@
 
 ### 1. IFACES
 
-`IFACES` is a required variable for WYL to work. It can be set through `GUI`, config file or environment variables.   
+`IFACES` is a required variable for myNetwork to work. It can be set through `GUI`, config file or environment variables.   
 `IFACES` is a list of network interfaces to scan, space separated. For example 
 ```sh
 IFACES: "enp4s0 wlxf4ec3892dd51"
