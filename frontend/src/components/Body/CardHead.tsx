@@ -4,6 +4,8 @@ import Filter from "../Filter";
 import Search from "../Search";
 import { getHosts } from "../../functions/atstart";
 import { apiDelHost } from "../../functions/api";
+import { Button } from "../ui/button";
+import { Toggle } from "../ui/toggle";
 
 function CardHead() {
 
@@ -38,19 +40,22 @@ function CardHead() {
       <div class="col-md mt-1 mb-1">
         <div class="d-flex justify-content-between gap-2">
         <Search></Search>
-        <button
-          class={showDetails() ? "btn btn-sm btn-primary mn-detail-toggle" : "btn btn-sm btn-outline-primary mn-detail-toggle"}
+        <Toggle
+          pressed={showDetails()}
+          onChange={handleDetails}
+          variant={showDetails() ? "default" : "outline"}
+          size="sm"
+          class="mn-detail-toggle"
           title="Toggle details"
-          onClick={handleDetails}
         >
           Details
-        </button>
+        </Toggle>
         <Show
           when={editNames()}
-          fallback={<button class="btn btn-sm btn-outline-primary" title="Toggle edit" onClick={[handleEditNames, true]}>Edit</button>}
+          fallback={<Button variant="outline" size="sm" title="Toggle edit" onClick={[handleEditNames, true]}>Edit</Button>}
         >
-          <button type="button" onClick={handleDel} title="Delete selected hosts" class="btn btn-sm btn-outline-danger">Delete</button>
-          <button class="btn btn-sm btn-primary" title="Toggle edit" onClick={[handleEditNames, false]}>Done</button>
+          <Button type="button" onClick={handleDel} title="Delete selected hosts" variant="destructive" size="sm">Delete</Button>
+          <Button variant="default" size="sm" title="Toggle edit" onClick={[handleEditNames, false]}>Done</Button>
         </Show>
         </div>
       </div>

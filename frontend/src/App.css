@@ -177,6 +177,94 @@ body {
     --bs-btn-hover-color: #991b1b;
 }
 
+.mn-ui-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .35rem;
+    border: 1px solid transparent;
+    border-radius: .5rem;
+    font-size: .82rem;
+    font-weight: 650;
+    line-height: 1;
+    letter-spacing: 0;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color .15s ease, border-color .15s ease, color .15s ease, box-shadow .15s ease;
+}
+
+.mn-ui-button:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 .18rem rgba(2, 132, 199, .18);
+}
+
+.mn-ui-button:disabled {
+    cursor: not-allowed;
+    opacity: .5;
+}
+
+.mn-ui-button-default,
+.mn-ui-toggle[data-pressed] {
+    background: var(--mn-text);
+    border-color: var(--mn-text);
+    color: #ffffff;
+}
+
+.mn-ui-button-default:hover,
+.mn-ui-toggle[data-pressed]:hover {
+    background: #0f172a;
+    border-color: #0f172a;
+    color: #ffffff;
+}
+
+.mn-ui-button-outline {
+    background: var(--mn-surface);
+    border-color: var(--mn-blue-border);
+    color: var(--mn-blue);
+}
+
+.mn-ui-button-outline:hover {
+    background: var(--mn-blue-soft);
+    color: #075985;
+}
+
+.mn-ui-button-destructive {
+    background: var(--mn-surface);
+    border-color: #fecaca;
+    color: #dc2626;
+}
+
+.mn-ui-button-destructive:hover {
+    background: #fef2f2;
+    color: #991b1b;
+}
+
+.mn-ui-button-ghost {
+    background: transparent;
+    color: var(--mn-muted);
+}
+
+.mn-ui-button-ghost:hover {
+    background: var(--mn-surface-muted);
+    color: var(--mn-text);
+}
+
+.mn-ui-button-size-default {
+    min-height: 2.25rem;
+    padding: 0 .85rem;
+}
+
+.mn-ui-button-size-sm {
+    min-height: 2rem;
+    padding: 0 .65rem;
+}
+
+.mn-ui-button-size-icon {
+    width: 2rem;
+    min-height: 2rem;
+    padding: 0;
+}
+
 .mn-detail-toggle {
     border-color: var(--mn-blue-border);
     white-space: nowrap;
