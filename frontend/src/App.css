@@ -177,6 +177,11 @@ body {
     --bs-btn-hover-color: #991b1b;
 }
 
+.mn-detail-toggle {
+    border-color: var(--mn-blue-border);
+    white-space: nowrap;
+}
+
 .mn-search {
     max-width: 11rem;
 }
@@ -207,6 +212,19 @@ body {
     color: var(--mn-muted);
     background: var(--mn-surface-muted);
     border-bottom-color: var(--mn-border);
+}
+
+.mn-table:not(.mn-show-details) .mn-col-iface,
+.mn-table:not(.mn-show-details) .mn-col-mac,
+.mn-table:not(.mn-show-details) .mn-col-hardware,
+.mn-table:not(.mn-show-details) .mn-col-date,
+.mn-table:not(.mn-show-details) .mn-col-known,
+.mn-table:not(.mn-show-details) .mn-cell-iface,
+.mn-table:not(.mn-show-details) .mn-cell-mac,
+.mn-table:not(.mn-show-details) .mn-cell-hw,
+.mn-table:not(.mn-show-details) .mn-cell-date,
+.mn-table:not(.mn-show-details) .mn-cell-known {
+    display: none;
 }
 
 .mn-col-index,
@@ -374,8 +392,10 @@ body {
         grid-template-columns: 1fr auto auto;
         grid-template-areas:
             "name now action"
-            "ip iface known"
+            "ip ip ip"
+            "iface iface known"
             "mac mac mac"
+            "hw hw hw"
             "date date date";
         gap: .1rem .45rem;
         padding: .45rem .55rem .42rem 2rem;
@@ -442,7 +462,9 @@ body {
     }
 
     .mn-cell-hw {
-        display: none !important;
+        grid-area: hw;
+        font-size: .72rem;
+        color: var(--mn-muted);
     }
 
     .mn-cell-date {

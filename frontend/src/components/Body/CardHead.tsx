@@ -1,5 +1,5 @@
 import { Show } from "solid-js";
-import { editNames, selectedIDs, setEditNames } from "../../functions/exports";
+import { editNames, selectedIDs, setEditNames, setShowDetails, showDetails } from "../../functions/exports";
 import Filter from "../Filter";
 import Search from "../Search";
 import { getHosts } from "../../functions/atstart";
@@ -24,6 +24,10 @@ function CardHead() {
     window.location.href = '/';
   };
 
+  const handleDetails = () => {
+    setShowDetails(!showDetails());
+  };
+
   return (
     <div class="row g-2 align-items-center mn-toolbar">
       <div class="col-md mt-1 mb-1">
@@ -34,6 +38,13 @@ function CardHead() {
       <div class="col-md mt-1 mb-1">
         <div class="d-flex justify-content-between gap-2">
         <Search></Search>
+        <button
+          class={showDetails() ? "btn btn-sm btn-primary mn-detail-toggle" : "btn btn-sm btn-outline-primary mn-detail-toggle"}
+          title="Toggle details"
+          onClick={handleDetails}
+        >
+          Details
+        </button>
         <Show
           when={editNames()}
           fallback={<button class="btn btn-sm btn-outline-primary" title="Toggle edit" onClick={[handleEditNames, true]}>Edit</button>}

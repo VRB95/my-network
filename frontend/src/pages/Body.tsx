@@ -1,6 +1,6 @@
 import { For, onMount } from "solid-js";
 
-import { allHosts } from "../functions/exports";
+import { allHosts, showDetails } from "../functions/exports";
 
 import TableRow from "../components/Body/TableRow";
 import TableHead from "../components/Body/TableHead";
@@ -19,7 +19,7 @@ function Body() {
         <CardHead></CardHead>
       </div>
       <div class="card-body table-responsive">
-        <table class="table table-striped table-hover mn-table">
+        <table class={showDetails() ? "table table-striped table-hover mn-table mn-show-details" : "table table-striped table-hover mn-table"}>
           <TableHead></TableHead>
           <tbody>
             <For each={allHosts}>{(host, index) =>

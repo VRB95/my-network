@@ -93,3 +93,5 @@ export const [show, setShow] = createSignal<number>(200);
 export const [histUpdOnFilter, setHistUpdOnFilter] = createSignal(false);
 
 export const [selectedIDs, setSelectedIDs] = createSignal<number[]>([]);
+
+export const [showDetails, setShowDetails] = createSignal(false);
