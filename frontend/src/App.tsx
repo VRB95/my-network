@@ -1,37 +1,29 @@
-import { lazy, onMount } from 'solid-js';
-import { Router, Route } from "@solidjs/router";
-import './App.css';
-import { runAtStart } from './functions/atstart';
-
-import Body from './pages/Body';
-import Header from './components/Header';
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { HostsProvider } from '@/store/HostsContext'
+import { ConfigProvider } from '@/store/ConfigContext'
+import { Header } from '@/components/layout/Header'
+import { HostsPage } from '@/pages/HostsPage'
+import { ConfigPage } from '@/pages/ConfigPage'
+import { HistoryPage } from '@/pages/HistoryPage'
+import { HostDetailPage } from '@/pages/HostDetailPage'
 
 function App() {
-
-  onMount(() => {
-    runAtStart();
-  });
-
-  const Config = lazy(() => import("./pages/Config"));
-  const History = lazy(() => import("./pages/History"));
-  const HostPage = lazy(() => import("./pages/HostPage"));
-
   return (
-    <>
-    <Header></Header>
-    <div class="container-lg">
-      <div class="row">
-        <div class="col-md mt-4 mb-4">
-          <Router>
-            <Route path="/" component={Body}/>
-            <Route path="/config" component={Config}/>
-            <Route path="/history" component={History}/>
-            <Route path="/host/:id" component={HostPage}/>
-          </Router>
-        </div>
-      </div>
-    </div>
-    </>
+    <ConfigProvider>
+      <HostsProvider>
+        <BrowserRouter>
+          <Header />
+          <main className="mx-auto max-w-6xl px-3 py-4">
+            <Routes>
+              <Route path="/" element={<HostsPage />} />
+              <Route path="/config" element={<ConfigPage />} />
+              <Route path="/history" element={<HistoryPage />} />
+              <Route path="/host/:id" element={<HostDetailPage />} />
+            </Routes>
+          </main>
+        </BrowserRouter>
+      </HostsProvider>
+    </ConfigProvider>
   )
 }
 

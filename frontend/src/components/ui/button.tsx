@@ -1,38 +1,50 @@
-import { cva, type VariantProps } from "class-variance-authority";
-import type { JSX } from "solid-js";
-import { splitProps } from "solid-js";
-import { cn } from "../../lib/utils";
+import * as React from 'react'
+import { Slot } from '@radix-ui/react-slot'
+import { cva, type VariantProps } from 'class-variance-authority'
+import { cn } from '@/lib/utils'
 
-export const buttonVariants = cva("mn-ui-button", {
-  variants: {
-    variant: {
-      default: "mn-ui-button-default",
-      outline: "mn-ui-button-outline",
-      destructive: "mn-ui-button-destructive",
-      ghost: "mn-ui-button-ghost",
+export const buttonVariants = cva(
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-sky-500",
+  {
+    variants: {
+      variant: {
+        default: 'bg-sky-600 text-white shadow-sm hover:bg-sky-700',
+        outline: 'border border-slate-300 bg-white text-slate-700 shadow-sm hover:bg-slate-50',
+        destructive: 'bg-red-600 text-white shadow-sm hover:bg-red-700',
+        ghost: 'text-slate-600 hover:bg-slate-100 hover:text-slate-900',
+        success: 'bg-emerald-600 text-white shadow-sm hover:bg-emerald-700',
+        warning: 'bg-amber-500 text-white shadow-sm hover:bg-amber-600',
+        link: 'text-sky-700 underline-offset-4 hover:underline',
+      },
+      size: {
+        default: 'h-9 px-4 py-2',
+        sm: 'h-8 rounded-md px-3 text-xs',
+        icon: 'h-8 w-8',
+      },
     },
-    size: {
-      default: "mn-ui-button-size-default",
-      sm: "mn-ui-button-size-sm",
-      icon: "mn-ui-button-size-icon",
+    defaultVariants: {
+      variant: 'default',
+      size: 'default',
     },
   },
-  defaultVariants: {
-    variant: "default",
-    size: "default",
-  },
-});
+)
 
-type ButtonProps = JSX.ButtonHTMLAttributes<HTMLButtonElement> &
-  VariantProps<typeof buttonVariants>;
-
-export function Button(props: ButtonProps) {
-  const [local, others] = splitProps(props, ["class", "variant", "size"]);
-
-  return (
-    <button
-      class={cn(buttonVariants({ variant: local.variant, size: local.size }), local.class)}
-      {...others}
-    />
-  );
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean
 }
+
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant, size, asChild = false, ...props }, ref) => {
+    const Comp = asChild ? Slot : 'button'
+    return (
+      <Comp
+        className={cn(buttonVariants({ variant, size }), className)}
+        ref={ref}
+        {...props}
+      />
+    )
+  },
+)
+Button.displayName = 'Button'

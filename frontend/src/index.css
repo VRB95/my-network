@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  background:
+    linear-gradient(180deg, #f0f9ff 0, rgba(240, 249, 255, 0) 12rem),
+    #f8fafc;
+  color: #0f172a;
+}
+
+.dark body {
+  background: #0b1220;
+  color: #e2e8f0;
+}

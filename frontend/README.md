@@ -1,28 +1,57 @@
-## Usage
+# myNetwork - React frontend
+
+React + TypeScript rewrite of the original SolidJS frontend. Same features,
+same backend contract, same dev-server proxy - just React + Tailwind v4 +
+shadcn-style UI components under the hood.
+
+## Quick start (plug and play)
 
 ```bash
-$ npm install # or pnpm install or yarn install
+npm install
+npm run dev
 ```
 
-### Learn more on the [Solid Website](https://solidjs.com) and come chat with us on our [Discord](https://discord.com/invite/solidjs)
+The dev server runs on `127.0.0.1:5173` and proxies `/api`, `/fs`,
+`/metrics` and `/swagger` to `http://127.0.0.1:8840` (the Go backend),
+exactly like the original app. Just start the backend and `npm run dev` -
+no extra configuration needed.
 
-## Available Scripts
+```bash
+npm run build    # production build -> dist/
+npm run preview  # preview the production build
+```
 
-In the project directory, you can run:
+## Architecture
 
-### `npm run dev`
+- `src/services/ApiService.ts` - the **only** place in the app that talks
+  to the backend. A single class with one clearly named method per
+  endpoint (getAllHosts, editHost, deleteHost, wakeOnLan, scanPort,
+  getHistory, getConfig, save*Config, ...). Everything else calls this
+  service; nothing else calls `fetch` directly.
+- `src/store/` - two small React Context providers:
+  - `HostsContext` - fetches/polls the host list, and exposes it through a
+    filter -> search -> sort pipeline, plus edit-mode/selection state.
+  - `ConfigContext` - fetches the app configuration once and exposes it to
+    every config form.
+- `src/lib/hostSort.ts`, `hostFilter.ts`, `hostSearch.ts` - pure,
+  side-effect-free functions, independently testable, each with a single
+  responsibility.
+- `src/components/ui/` - small shadcn-style primitives (Button, Input,
+  Select, Table, Card, Switch, Toggle, Badge...) built on Radix UI +
+  class-variance-authority + tailwind-merge.
+- `src/components/{hosts,config,history,host-detail,layout}/` - one
+  focused component per concern, mirroring the original component tree.
+- `src/pages/` - route-level components wired up in `App.tsx` via
+  `react-router-dom`.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
+## Notes on parity with the original
 
-### `npm run build`
-
-Builds the app for production to the `dist` folder.<br>
-It correctly bundles Solid in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-## Deployment
-
-Learn more about deploying your application with the [documentations](https://vite.dev/guide/static-deploy.html)
+- The "Theme" field in Basic config is kept in the form (for backend
+  compatibility - the API still stores a bootswatch theme name) even
+  though this rewrite renders with Tailwind/shadcn rather than swapping
+  Bootstrap stylesheets at runtime.
+- "Color mode" still works: it toggles a `dark` class on `<html>` that
+  Tailwind's dark: variant picks up.
+- Config forms still submit as plain `FormData` (no JSON), matching the
+  original API contract - `Select` and the config toggles are built on
+  native `<select>`/`<input type="checkbox">` for that reason.
