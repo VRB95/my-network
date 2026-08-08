@@ -3,6 +3,7 @@ package arp
 import (
 	"log/slog"
 	"os/exec"
+	"runtime"
 	"strings"
 	"time"
 
@@ -20,8 +21,8 @@ func scanIface(iface string) string {
 	} else {
 		cmd = exec.Command("arp-scan", "-glNx", "-I", iface)
 	}
-	out, err := cmd.Output()
 	slog.Debug(cmd.String())
+	out, err := cmd.Output()
 
 	if check.IfError(err) {
 		return string("")
@@ -50,8 +51,11 @@ func parseOutput(text, iface string) []models.Host {
 
 	for _, host := range p {
 		if host != "" {
-			var oneHost models.Host
 			p := strings.Split(host, "	")
+			if len(p) < 3 {
+				continue
+			}
+			var oneHost models.Host
 			oneHost.Iface = iface
 			oneHost.IP = p[0]
 			oneHost.Mac = p[1]
@@ -65,12 +69,59 @@ func parseOutput(text, iface string) []models.Host {
 	return foundHosts
 }
 
+func scanWindowsARP() []models.Host {
+	cmd := exec.Command("arp", "-a")
+	slog.Debug(cmd.String())
+
+	out, err := cmd.Output()
+	if check.IfError(err) {
+		return []models.Host{}
+	}
+
+	var iface string
+	var foundHosts []models.Host
+	for _, line := range strings.Split(string(out), "\n") {
+		line = strings.TrimSpace(line)
+		if line == "" {
+			continue
+		}
+
+		if strings.HasPrefix(line, "Interface:") {
+			fields := strings.Fields(line)
+			if len(fields) >= 2 {
+				iface = fields[1]
+			}
+			continue
+		}
+
+		fields := strings.Fields(line)
+		if len(fields) < 3 || fields[0] == "Internet" || fields[2] != "dynamic" {
+			continue
+		}
+
+		foundHosts = append(foundHosts, models.Host{
+			Iface: iface,
+			IP:    fields[0],
+			Mac:   strings.ReplaceAll(fields[1], "-", ":"),
+			Hw:    "unknown",
+			Date:  time.Now().Format("2006-01-02 15:04:05"),
+			Now:   1,
+		})
+	}
+
+	return foundHosts
+}
+
 // Scan all interfaces
 func Scan(ifaces, args string, strs []string) []models.Host {
 	var text string
 	var p []string
 	var foundHosts = []models.Host{}
 	arpArgs = args
+
+	if runtime.GOOS == "windows" {
+		return scanWindowsARP()
+	}
 
 	if ifaces != "" {
 
