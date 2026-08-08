@@ -1,4 +1,4 @@
-# myNetwork
+# my-network
 
 myNetwork is a lightweight local network monitor with a web interface. It helps you see devices on your LAN, track online/offline history, mark known devices, and expose metrics for dashboards.
 
