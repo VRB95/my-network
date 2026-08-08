@@ -11,7 +11,6 @@ function Header() {
     setAppConfig(await apiGetConfig());
 
     const theme = appConfig().Theme?appConfig().Theme:"sand";
-    const color = appConfig().Color?appConfig().Color:"dark";
     
     if (appConfig().NodePath == '') {
       setThemePath("https://cdn.jsdelivr.net/npm/aceberg-bootswatch-fork@v5.3.3-2/dist/"+theme+"/bootstrap.min.css");
@@ -21,10 +20,8 @@ function Header() {
       setIconsPath(appConfig().NodePath+"/node_modules/bootstrap-icons/font/bootstrap-icons.css");
     }
 
-    document.documentElement.setAttribute("data-bs-theme", color);
-    color === "dark"
-      ? document.documentElement.style.setProperty('--transparent-light', '#ffffff15')
-      : document.documentElement.style.setProperty('--transparent-light', '#00000015');
+    document.documentElement.setAttribute("data-bs-theme", "light");
+    document.documentElement.style.setProperty('--transparent-light', '#0284c714');
   }
   setCurrentTheme();
 
@@ -32,10 +29,11 @@ function Header() {
     <>
     <link rel="stylesheet" href={iconsPath()}></link> {/* icons */}
     <link rel="stylesheet" href={themePath()}></link> {/* theme */}
-    <nav class="navbar navbar-expand-md navbar-dark bg-primary mn-navbar">
+    <nav class="navbar navbar-expand-md mn-navbar">
       <div class="container-lg">
-        <a class="navbar-brand" href="/">
-          <img src="/fs/public/favicon.png" style="width: 2em"/>
+        <a class="navbar-brand mn-brand" href="/">
+          <span class="mn-brand-mark"></span>
+          <span>myNetwork</span>
         </a>
         <ul class="navbar-nav me-auto mb-0">
           <li class="nav-item">

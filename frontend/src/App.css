@@ -1,10 +1,31 @@
 /* VARS */
 :root {
-    --transparent-light: #ffffff15;
+    --mn-bg: #f8fafc;
+    --mn-surface: #ffffff;
+    --mn-surface-muted: #f1f5f9;
+    --mn-border: #e2e8f0;
+    --mn-border-strong: #cbd5e1;
+    --mn-text: #020617;
+    --mn-muted: #64748b;
+    --mn-blue: #0284c7;
+    --mn-blue-soft: #e0f2fe;
+    --mn-blue-border: #7dd3fc;
+    --mn-radius: .65rem;
+    --transparent-light: #0284c714;
+    --bs-body-bg: var(--mn-bg);
+    --bs-body-color: var(--mn-text);
+    --bs-primary: var(--mn-blue);
+    --bs-link-color: #0369a1;
+    --bs-link-hover-color: #075985;
+    --bs-border-color: var(--mn-border);
 }
 
 body {
     font-size: .92rem;
+    background:
+        linear-gradient(180deg, #f0f9ff 0, rgba(240, 249, 255, 0) 12rem),
+        var(--mn-bg);
+    color: var(--mn-text);
 }
 
 .container-lg {
@@ -14,29 +35,58 @@ body {
 
 .mn-navbar {
     --bs-navbar-padding-y: .18rem;
-    min-height: 2.45rem;
+    min-height: 2.6rem;
+    background: rgba(255, 255, 255, .86);
+    border-bottom: 1px solid var(--mn-border);
+    backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 .mn-navbar .container-lg {
     min-height: 2.1rem;
 }
 
-.mn-navbar .navbar-brand {
+.mn-navbar .navbar-brand,
+.mn-brand {
     display: inline-flex;
     align-items: center;
+    gap: .45rem;
     padding-top: 0;
     padding-bottom: 0;
-    margin-right: .55rem;
+    margin-right: .75rem;
+    color: var(--mn-text);
+    font-size: .95rem;
+    font-weight: 750;
+    letter-spacing: 0;
 }
 
-.mn-navbar .navbar-brand img {
-    width: 1.3em !important;
+.mn-brand:hover {
+    color: var(--mn-text);
+}
+
+.mn-brand-mark {
+    width: .72rem;
+    height: .72rem;
+    border-radius: 999px;
+    background: var(--mn-blue);
+    box-shadow: 0 0 0 .24rem var(--mn-blue-soft);
 }
 
 .mn-navbar .nav-link {
-    padding: .25rem .42rem;
+    padding: .32rem .52rem;
+    border-radius: .45rem;
+    color: var(--mn-muted) !important;
     font-size: .82rem;
+    font-weight: 600;
     line-height: 1.15;
+}
+
+.mn-navbar .nav-link:hover,
+.mn-navbar .nav-link.active:hover {
+    background: var(--mn-surface-muted);
+    color: var(--mn-text) !important;
 }
 
 .mn-github-link {
@@ -46,12 +96,17 @@ body {
 }
 
 .mn-panel {
-    border-radius: .5rem;
+    border-color: var(--mn-border) !important;
+    border-radius: var(--mn-radius);
     overflow: hidden;
+    background: var(--mn-surface);
+    box-shadow: 0 1px 2px rgba(15, 23, 42, .05);
 }
 
 .mn-panel .card-header {
-    padding: .45rem .55rem;
+    padding: .55rem .65rem;
+    background: var(--mn-surface);
+    border-bottom-color: var(--mn-border);
 }
 
 .mn-panel .card-body {
@@ -64,6 +119,64 @@ body {
     min-height: 2rem;
 }
 
+.card {
+    border-color: var(--mn-border) !important;
+    border-radius: var(--mn-radius);
+    box-shadow: 0 1px 2px rgba(15, 23, 42, .04);
+}
+
+.card-header {
+    background: var(--mn-surface);
+    border-bottom-color: var(--mn-border);
+    color: var(--mn-text);
+    font-weight: 700;
+}
+
+.card-body {
+    background: var(--mn-surface);
+}
+
+.form-control,
+.form-select {
+    border-color: var(--mn-border);
+    border-radius: .5rem;
+    background-color: var(--mn-surface);
+    color: var(--mn-text);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--mn-blue-border);
+    box-shadow: 0 0 0 .18rem rgba(2, 132, 199, .14);
+}
+
+.btn {
+    border-radius: .5rem;
+    font-weight: 650;
+}
+
+.btn-primary {
+    --bs-btn-bg: var(--mn-text);
+    --bs-btn-border-color: var(--mn-text);
+    --bs-btn-hover-bg: #0f172a;
+    --bs-btn-hover-border-color: #0f172a;
+}
+
+.btn-outline-primary {
+    --bs-btn-color: var(--mn-blue);
+    --bs-btn-border-color: var(--mn-blue-border);
+    --bs-btn-hover-bg: var(--mn-blue-soft);
+    --bs-btn-hover-border-color: var(--mn-blue-border);
+    --bs-btn-hover-color: #075985;
+}
+
+.btn-outline-danger {
+    --bs-btn-border-color: #fecaca;
+    --bs-btn-color: #dc2626;
+    --bs-btn-hover-bg: #fef2f2;
+    --bs-btn-hover-color: #991b1b;
+}
+
 .mn-search {
     max-width: 11rem;
 }
@@ -72,6 +185,9 @@ body {
     margin-bottom: 0;
     table-layout: fixed;
     font-size: .84rem;
+    --bs-table-bg: var(--mn-surface);
+    --bs-table-striped-bg: #f8fafc;
+    --bs-table-hover-bg: var(--mn-blue-soft);
 }
 
 .mn-table th,
@@ -88,6 +204,9 @@ body {
     font-weight: 700;
     letter-spacing: 0;
     text-transform: uppercase;
+    color: var(--mn-muted);
+    background: var(--mn-surface-muted);
+    border-bottom-color: var(--mn-border);
 }
 
 .mn-col-index,
@@ -142,7 +261,7 @@ body {
 .my-btn {
     height: 100%;
     background-color: #00000000;
-    color: var(--bs-primary);
+    color: var(--mn-blue);
     text-align: center;
     cursor: pointer;
     padding: 1px;
@@ -178,10 +297,13 @@ body {
 
     .mn-navbar .navbar-brand {
         margin-right: .35rem;
+        font-size: .9rem;
     }
 
-    .mn-navbar .navbar-brand img {
-        width: 1.18em !important;
+    .mn-brand-mark {
+        width: .62rem;
+        height: .62rem;
+        box-shadow: 0 0 0 .2rem var(--mn-blue-soft);
     }
 
     .mn-navbar .nav-link {
@@ -257,9 +379,10 @@ body {
             "date date date";
         gap: .1rem .45rem;
         padding: .45rem .55rem .42rem 2rem;
-        border: 1px solid var(--bs-border-color);
-        border-radius: .5rem;
-        background: var(--bs-body-bg);
+        border: 1px solid var(--mn-border);
+        border-radius: var(--mn-radius);
+        background: var(--mn-surface);
+        box-shadow: 0 1px 2px rgba(15, 23, 42, .04);
     }
 
     .mn-table td {
@@ -293,7 +416,7 @@ body {
         grid-area: iface;
         align-self: center;
         font-size: .74rem;
-        color: var(--bs-secondary-color);
+        color: var(--mn-muted);
         text-align: right;
     }
 
@@ -315,7 +438,7 @@ body {
     .mn-cell-mac {
         grid-area: mac;
         font-size: .72rem;
-        color: var(--bs-secondary-color);
+        color: var(--mn-muted);
     }
 
     .mn-cell-hw {
@@ -325,7 +448,7 @@ body {
     .mn-cell-date {
         grid-area: date;
         font-size: .7rem;
-        color: var(--bs-secondary-color);
+        color: var(--mn-muted);
     }
 
     .mn-cell-known .form-check {
@@ -339,10 +462,10 @@ body {
     border-left: thin solid black;
 }
 .my-box-on {
-    background-color: var(--bs-success);
+    background-color: #16a34a;
 }
 .my-box-off {
-    background-color: var(--bs-gray-500);
+    background-color: #94a3b8;
 }
 .my-box-on:hover, .my-box-off:hover {
     background-color: #0000001a;
