@@ -43,6 +43,9 @@ func triggerRescan(c *gin.Context) {
 // @Success      200  {object}  models.Conf
 // @Router       /config [get]
 func getConfig(c *gin.Context) {
+	if conf.AppConfig.ArpStrs == nil {
+		conf.AppConfig.ArpStrs = []string{}
+	}
 	c.IndentedJSON(http.StatusOK, conf.AppConfig)
 }
 

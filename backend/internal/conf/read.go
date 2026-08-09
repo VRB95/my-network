@@ -18,6 +18,7 @@ func read(path string) (config models.Conf) {
 	viper.SetDefault("NODEPATH", "")
 	viper.SetDefault("LOG_LEVEL", "info")
 	viper.SetDefault("ARP_ARGS", "")
+	viper.SetDefault("ARP_STRS", []string{})
 	viper.SetDefault("ARP_STRS_JOINED", "")
 	viper.SetDefault("IFACES", "")
 	viper.SetDefault("TIMEOUT", 120)
@@ -46,6 +47,9 @@ func read(path string) (config models.Conf) {
 	config.LogLevel = viper.Get("LOG_LEVEL").(string)
 	config.ArpArgs = viper.Get("ARP_ARGS").(string)
 	config.ArpStrs = viper.GetStringSlice("ARP_STRS")
+	if config.ArpStrs == nil {
+		config.ArpStrs = []string{}
+	}
 	config.Ifaces = viper.Get("IFACES").(string)
 	config.Timeout = viper.GetInt("TIMEOUT")
 	config.TrimHist = viper.GetInt("TRIM_HIST")

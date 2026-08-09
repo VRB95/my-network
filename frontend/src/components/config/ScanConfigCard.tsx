@@ -12,6 +12,7 @@ const LOG_LEVELS = ['debug', 'info', 'warn', 'error']
 
 export function ScanConfigCard() {
   const { config, refresh } = useConfig()
+  const arpStrs = Array.isArray(config.ArpStrs) ? config.ArpStrs : []
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -37,7 +38,7 @@ export function ScanConfigCard() {
           </Field>
           <Field label="Arp Strings">
             <div className="space-y-2">
-              {config.ArpStrs.map((arpStr, index) => (
+              {arpStrs.map((arpStr, index) => (
                 <Input key={index} name="arpstrs" defaultValue={arpStr} />
               ))}
               <Input name="arpstrs" placeholder="e.g. docker0" />

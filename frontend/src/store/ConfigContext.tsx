@@ -16,7 +16,10 @@ export function ConfigProvider({ children }: { children: React.ReactNode }) {
 
   const refresh = React.useCallback(async () => {
     const fetched = await apiService.getConfig()
-    setConfig(fetched)
+    setConfig({
+      ...fetched,
+      ArpStrs: Array.isArray(fetched.ArpStrs) ? fetched.ArpStrs : [],
+    })
     setIsLoading(false)
   }, [])
 
