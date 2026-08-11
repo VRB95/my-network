@@ -88,6 +88,10 @@ class ApiService {
     if (!response.ok) throw new Error(await this.errorMessage(response))
   }
 
+  async setHostGroup(hostId: number, groupId: number): Promise<void> {
+    await this.sendJson<{ GroupID: number }>(`/api/host/${hostId}/group`, 'PATCH', { GroupID: groupId })
+  }
+
   /** Trigger a test notification through the configured Shoutrrr URL. */
   async testNotify(): Promise<void> {
     await fetch(this.url('/api/notify_test'))

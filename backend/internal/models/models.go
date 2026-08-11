@@ -44,6 +44,7 @@ type Host struct {
 	Date  string `gorm:"column:DATE"`
 	Known int    `gorm:"column:KNOWN"`
 	Now   int    `gorm:"column:NOW"`
+	GroupID int  `gorm:"column:GROUP_ID;index;default:0"`
 }
 
 // Group is a reusable, named collection of items and IP addresses.

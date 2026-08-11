@@ -38,3 +38,9 @@ func Clear(table string) {
 	result := tab.Where("1 = 1").Delete(&models.Host{})
 	check.IfError(result.Error)
 }
+
+// SetHostGroup assigns a host to a persisted group. A group ID of zero removes
+// the assignment.
+func SetHostGroup(id, groupID int) error {
+	return db.Table("now").Where("\"ID\" = ?", id).Update("GROUP_ID", groupID).Error
+}

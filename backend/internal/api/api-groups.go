@@ -12,6 +12,10 @@ import (
 	"myNetwork/internal/models"
 )
 
+type hostGroupPayload struct {
+	GroupID int `json:"GroupID"`
+}
+
 func getGroups(c *gin.Context) {
 	groups, ok := gdb.SelectGroups()
 	if !ok {
@@ -79,6 +83,30 @@ func deleteGroup(c *gin.Context) {
 		return
 	}
 	c.Status(http.StatusNoContent)
+}
+
+func setHostGroup(c *gin.Context) {
+	hostID, err := strconv.Atoi(c.Param("id"))
+	if err != nil || hostID < 1 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid host id"})
+		return
+	}
+	var payload hostGroupPayload
+	if err := c.ShouldBindJSON(&payload); err != nil || payload.GroupID < 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid group assignment"})
+		return
+	}
+	if payload.GroupID != 0 {
+		if _, ok := gdb.SelectGroup(payload.GroupID); !ok {
+			c.JSON(http.StatusNotFound, gin.H{"error": "group not found"})
+			return
+		}
+	}
+	if err := gdb.SetHostGroup(hostID, payload.GroupID); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "could not assign group"})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"GroupID": payload.GroupID})
 }
 
 func cleanValues(values []string) []string {

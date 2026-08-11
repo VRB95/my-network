@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom'
 import { CheckCircle2, Circle, MoreVertical } from 'lucide-react'
 import { TableCell, TableRow as UiTableRow } from '@/components/ui/table'
 import { Input } from '@/components/ui/input'
+import { Select } from '@/components/ui/select'
 import { Switch } from '@/components/ui/switch'
 import { apiService } from '@/services/ApiService'
 import { useDebouncedCallback } from '@/hooks/useDebouncedCallback'
 import { useHosts } from '@/store/HostsContext'
 import { cn } from '@/lib/utils'
 import type { Host } from '@/types/host'
+import type { Group } from '@/types/group'
 
 interface HostsTableRowProps {
   host: Host
@@ -18,6 +20,14 @@ interface HostsTableRowProps {
 export function HostsTableRow({ host, index }: HostsTableRowProps) {
   const { editNames, showDetails, selectedIds, toggleSelected } = useHosts()
   const [name, setName] = React.useState(host.Name)
+  const [groups, setGroups] = React.useState<Group[]>([])
+  const [groupId, setGroupId] = React.useState(host.GroupID ?? 0)
+
+  React.useEffect(() => {
+    if ((editNames || groupId !== 0) && groups.length === 0) {
+      void apiService.getGroups().then(setGroups)
+    }
+  }, [editNames, groupId, groups.length])
 
   const debouncedSaveName = useDebouncedCallback(async (value: string) => {
     await apiService.editHost(host.ID, value)
@@ -32,6 +42,12 @@ export function HostsTableRow({ host, index }: HostsTableRowProps) {
     await apiService.editHost(host.ID, name, 'toggle')
   }
 
+  const handleGroupChange = async (value: string) => {
+    const nextGroupId = Number(value)
+    setGroupId(nextGroupId)
+    await apiService.setHostGroup(host.ID, nextGroupId)
+  }
+
   const isSelected = selectedIds.includes(host.ID)
   const detailClass = cn(!showDetails && 'hidden')
 
@@ -41,13 +57,24 @@ export function HostsTableRow({ host, index }: HostsTableRowProps) {
 
       <TableCell>
         {editNames ? (
-          <Input
-            value={name}
-            onChange={(e) => handleNameChange(e.target.value)}
-            className="h-7 text-sm"
-          />
+          <div className="flex min-w-56 gap-2">
+            <Input
+              value={name}
+              onChange={(e) => handleNameChange(e.target.value)}
+              className="h-7 min-w-28 text-sm"
+            />
+            <Select
+              aria-label={`Group for ${name || host.IP}`}
+              value={String(groupId)}
+              onChange={(e) => void handleGroupChange(e.target.value)}
+              className="h-7 min-w-28 py-0 text-xs"
+            >
+              <option value="0">No group</option>
+              {groups.map((group) => <option key={group.ID} value={group.ID}>{group.Name}</option>)}
+            </Select>
+          </div>
         ) : (
-          name
+          <div><span>{name}</span>{groupId !== 0 && <span className="ml-2 rounded bg-sky-50 px-1.5 py-0.5 text-[10px] font-medium text-sky-700">{groups.find((group) => group.ID === groupId)?.Name ?? 'Grouped'}</span>}</div>
         )}
       </TableCell>
 

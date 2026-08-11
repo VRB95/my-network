@@ -35,6 +35,7 @@ func Routes(router *gin.Engine) {
 		r0.POST("/groups", saveGroup)
 		r0.PUT("/groups/:id", saveGroup)
 		r0.DELETE("/groups/:id", deleteGroup)
+		r0.PATCH("/host/:id/group", setHostGroup)
 
 		r0.POST("/config/", saveConfigHandler)                // config.go
 		r0.POST("/config_settings/", saveSettingsHandler)     // config.go

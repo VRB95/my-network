@@ -1,6 +1,8 @@
 package gdb
 
 import (
+	"gorm.io/gorm"
+
 	"myNetwork/internal/check"
 	"myNetwork/internal/models"
 )
@@ -20,5 +22,10 @@ func SaveGroup(group *models.Group) error {
 }
 
 func DeleteGroup(id int) error {
-	return db.Table("groups").Delete(&models.Group{}, id).Error
+	return db.Transaction(func(tx *gorm.DB) error {
+		if err := tx.Table("now").Where("\"GROUP_ID\" = ?", id).Update("GROUP_ID", 0).Error; err != nil {
+			return err
+		}
+		return tx.Table("groups").Delete(&models.Group{}, id).Error
+	})
 }

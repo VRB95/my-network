@@ -10,6 +10,7 @@ export interface Host {
   Date: string
   Known: number
   Now: number
+  GroupID: number
 }
 
 export const emptyHost: Host = {
@@ -23,6 +24,7 @@ export const emptyHost: Host = {
   Date: '',
   Known: 0,
   Now: 0,
+  GroupID: 0,
 }
 
 /** Fields a host list can be sorted or filtered by. */
