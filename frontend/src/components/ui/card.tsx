@@ -5,7 +5,7 @@ export const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDi
   ({ className, ...props }, ref) => (
     <div
       ref={ref}
-      className={cn('rounded-xl border border-sky-200 bg-white shadow-sm', className)}
+      className={cn('rounded-xl border border-sky-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-900', className)}
       {...props}
     />
   ),
@@ -17,7 +17,7 @@ export const CardHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<
     <div
       ref={ref}
       className={cn(
-        'flex flex-wrap items-center justify-between gap-2 rounded-t-xl border-b border-slate-200 bg-slate-50 px-4 py-2.5 text-sm font-semibold text-slate-700',
+        'flex flex-wrap items-center justify-between gap-2 rounded-t-xl border-b border-slate-200 bg-slate-50 px-4 py-2.5 text-sm font-semibold text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100',
         className,
       )}
       {...props}

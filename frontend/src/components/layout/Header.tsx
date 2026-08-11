@@ -19,9 +19,9 @@ const NAV_LINKS = [
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-10 border-b border-slate-200 bg-white/85 backdrop-blur">
+    <header className="sticky top-0 z-10 border-b border-slate-200 bg-white/85 backdrop-blur dark:border-slate-700 dark:bg-slate-950/90">
       <div className="mx-auto flex h-12 max-w-6xl items-center gap-4 px-3">
-        <NavLink to="/" className="flex items-center gap-2 text-sm font-bold text-slate-900">
+        <NavLink to="/" className="flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-slate-100">
           <span className="h-3 w-3 rounded-full bg-sky-600 shadow-[0_0_0_4px_rgba(2,132,199,0.15)]" />
           myNetwork
         </NavLink>
@@ -34,8 +34,8 @@ export function Header() {
               end={link.to === '/'}
               className={({ isActive }) =>
                 cn(
-                  'rounded-md px-2.5 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-900',
-                  isActive && 'bg-sky-50 text-sky-700',
+                  'rounded-md px-2.5 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100',
+                  isActive && 'bg-sky-50 text-sky-700 dark:bg-sky-950 dark:text-sky-300',
                 )
               }
             >

@@ -57,7 +57,7 @@ export function HostsTableRow({ host, index }: HostsTableRowProps) {
 
       <TableCell>
         {editNames ? (
-          <div className="flex min-w-56 gap-2">
+          <div className="flex min-w-44 flex-col gap-1.5 sm:min-w-56 sm:flex-row sm:gap-2">
             <Input
               value={name}
               onChange={(e) => handleNameChange(e.target.value)}
@@ -74,14 +74,17 @@ export function HostsTableRow({ host, index }: HostsTableRowProps) {
             </Select>
           </div>
         ) : (
-          <div><span>{name}</span>{groupId !== 0 && <span className="ml-2 rounded bg-sky-50 px-1.5 py-0.5 text-[10px] font-medium text-sky-700">{groups.find((group) => group.ID === groupId)?.Name ?? 'Grouped'}</span>}</div>
+          <div className="flex min-w-28 flex-col items-start gap-0.5">
+            <span className="font-medium text-slate-900 dark:text-slate-100">{name || 'Unnamed'}</span>
+            {groupId !== 0 && <span className="rounded bg-sky-50 px-1.5 py-0.5 text-[10px] font-medium text-sky-700 dark:bg-sky-950 dark:text-sky-300">{groups.find((group) => group.ID === groupId)?.Name ?? 'Grouped'}</span>}
+          </div>
         )}
       </TableCell>
 
       <TableCell className={detailClass}>{host.Iface}</TableCell>
 
       <TableCell>
-        <a href={`http://${host.IP}`} target="_blank" rel="noreferrer" className="text-sky-700 hover:underline">
+        <a href={`http://${host.IP}`} target="_blank" rel="noreferrer" className="whitespace-nowrap text-sky-700 hover:underline dark:text-sky-400">
           {host.IP}
         </a>
       </TableCell>

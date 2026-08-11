@@ -5,7 +5,7 @@ export interface SortState {
   ascending: boolean
 }
 
-export const defaultSortState: SortState = { field: null, ascending: true }
+export const defaultSortState: SortState = { field: 'IP', ascending: true }
 
 /** Returns a new, sorted array - never mutates the input. */
 export function sortHosts(hosts: Host[], sort: SortState): Host[] {
@@ -15,7 +15,7 @@ export function sortHosts(hosts: Host[], sort: SortState): Host[] {
   const copy = [...hosts]
 
   if (field === 'IP') {
-    copy.sort((a, b) => (sort.ascending ? ipToNumber(a) - ipToNumber(b) : ipToNumber(b) - ipToNumber(a)))
+    copy.sort((a, b) => compareIPs(a.IP, b.IP) * (sort.ascending ? 1 : -1))
   } else {
     copy.sort((a, b) => compareByField(a, b, field, sort.ascending))
   }
@@ -37,10 +37,15 @@ function compareByField(a: Host, b: Host, field: HostField, ascending: boolean) 
   return 0
 }
 
-function ipToNumber(host: Host) {
-  return Number(
-    host.IP.split('.')
-      .map((num) => `000${num}`.slice(-3))
-      .join(''),
-  )
+function compareIPs(left: string, right: string) {
+  const leftParts = left.split('.').map(Number)
+  const rightParts = right.split('.').map(Number)
+  const areIPv4 = leftParts.length === 4 && rightParts.length === 4 &&
+    leftParts.every(Number.isInteger) && rightParts.every(Number.isInteger)
+
+  if (!areIPv4) return left.localeCompare(right, undefined, { numeric: true })
+  for (let index = 0; index < 4; index += 1) {
+    if (leftParts[index] !== rightParts[index]) return leftParts[index] - rightParts[index]
+  }
+  return 0
 }

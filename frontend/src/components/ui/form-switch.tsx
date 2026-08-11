@@ -16,7 +16,7 @@ export const FormSwitch = React.forwardRef<HTMLInputElement, React.InputHTMLAttr
         className={cn('peer sr-only', className)}
         {...props}
       />
-      <span className="absolute inset-0 rounded-full bg-slate-300 shadow-sm transition-colors peer-checked:bg-sky-600 peer-focus-visible:ring-2 peer-focus-visible:ring-sky-500" />
+      <span className="absolute inset-0 rounded-full bg-slate-300 shadow-sm transition-colors peer-checked:bg-sky-600 peer-focus-visible:ring-2 peer-focus-visible:ring-sky-500 dark:bg-slate-600" />
       <span className="pointer-events-none absolute left-0.5 h-4 w-4 translate-x-0 rounded-full bg-white shadow-sm transition-transform peer-checked:translate-x-4" />
     </label>
   ),
