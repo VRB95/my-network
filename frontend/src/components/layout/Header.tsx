@@ -13,6 +13,7 @@ function GithubMark(props: React.SVGProps<SVGSVGElement>) {
 const NAV_LINKS = [
   { to: '/', label: 'Home' },
   { to: '/config', label: 'Config' },
+  { to: '/groups', label: 'Groups' },
   { to: '/history', label: 'History' },
 ]
 

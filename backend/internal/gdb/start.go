@@ -53,6 +53,10 @@ func Start() {
 	tab = db.Table("history")
 	err = tab.AutoMigrate(&models.Host{})
 	check.IfError(err)
+
+	tab = db.Table("groups")
+	err = tab.AutoMigrate(&models.Group{})
+	check.IfError(err)
 }
 
 // Connect - choose DB and connect

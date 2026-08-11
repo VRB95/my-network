@@ -6,6 +6,7 @@ import { HostsPage } from '@/pages/HostsPage'
 import { ConfigPage } from '@/pages/ConfigPage'
 import { HistoryPage } from '@/pages/HistoryPage'
 import { HostDetailPage } from '@/pages/HostDetailPage'
+import { GroupsPage } from '@/pages/GroupsPage'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
               <Route path="/" element={<HostsPage />} />
               <Route path="/config" element={<ConfigPage />} />
               <Route path="/history" element={<HistoryPage />} />
+              <Route path="/groups" element={<GroupsPage />} />
               <Route path="/host/:id" element={<HostDetailPage />} />
             </Routes>
           </main>

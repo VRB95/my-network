@@ -1,5 +1,6 @@
 import type { Config } from '@/types/config'
 import type { Host } from '@/types/host'
+import type { Group, GroupInput } from '@/types/group'
 
 /**
  * ApiService centralizes every HTTP call this app makes to the myNetwork
@@ -73,6 +74,20 @@ class ApiService {
     return this.getJson<string>('/api/version')
   }
 
+  async getGroups(): Promise<Group[]> {
+    return this.getJson<Group[]>('/api/groups')
+  }
+
+  async saveGroup(group: GroupInput): Promise<Group> {
+    const path = group.ID ? `/api/groups/${group.ID}` : '/api/groups'
+    return this.sendJson<Group>(path, group.ID ? 'PUT' : 'POST', group)
+  }
+
+  async deleteGroup(id: number): Promise<void> {
+    const response = await fetch(this.url(`/api/groups/${id}`), { method: 'DELETE' })
+    if (!response.ok) throw new Error(await this.errorMessage(response))
+  }
+
   /** Trigger a test notification through the configured Shoutrrr URL. */
   async testNotify(): Promise<void> {
     await fetch(this.url('/api/notify_test'))
@@ -106,7 +121,23 @@ class ApiService {
 
   private async getJson<T>(path: string): Promise<T> {
     const response = await fetch(this.url(path))
+    if (!response.ok) throw new Error(await this.errorMessage(response))
     return (await response.json()) as T
+  }
+
+  private async sendJson<T>(path: string, method: string, body: unknown): Promise<T> {
+    const response = await fetch(this.url(path), {
+      method,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    })
+    if (!response.ok) throw new Error(await this.errorMessage(response))
+    return (await response.json()) as T
+  }
+
+  private async errorMessage(response: Response): Promise<string> {
+    const body = (await response.json().catch(() => null)) as { error?: string } | null
+    return body?.error ?? `Request failed (${response.status})`
   }
 
   private async postForm(path: string, form: HTMLFormElement): Promise<Response> {

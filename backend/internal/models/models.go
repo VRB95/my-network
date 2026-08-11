@@ -46,6 +46,15 @@ type Host struct {
 	Now   int    `gorm:"column:NOW"`
 }
 
+// Group is a reusable, named collection of items and IP addresses.
+// The slices are serialized as JSON so the model works with both SQLite and PostgreSQL.
+type Group struct {
+	ID    int      `gorm:"column:ID;primaryKey" json:"ID"`
+	Name  string   `gorm:"column:NAME;uniqueIndex;not null" json:"Name"`
+	Items []string `gorm:"column:ITEMS;serializer:json;type:text" json:"Items"`
+	IPs   []string `gorm:"column:IPS;serializer:json;type:text" json:"IPs"`
+}
+
 // Stat - status
 type Stat struct {
 	Total   int
