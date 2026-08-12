@@ -3,11 +3,13 @@ import { useNavigate } from 'react-router-dom'
 import { CheckCircle2, Circle } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
+import { Select } from '@/components/ui/select'
 import { Switch } from '@/components/ui/switch'
 import { Button } from '@/components/ui/button'
 import { apiService } from '@/services/ApiService'
 import { useDebouncedCallback } from '@/hooks/useDebouncedCallback'
 import type { Host } from '@/types/host'
+import type { Group } from '@/types/group'
 
 interface HostDetailCardProps {
   host: Host
@@ -16,8 +18,15 @@ interface HostDetailCardProps {
 export function HostDetailCard({ host }: HostDetailCardProps) {
   const navigate = useNavigate()
   const [name, setName] = React.useState(host.Name)
+  const [groups, setGroups] = React.useState<Group[]>([])
+  const [groupId, setGroupId] = React.useState(host.GroupID ?? 0)
+  const hostUrl = host.Port ? `http://${host.IP}:${host.Port}` : `http://${host.IP}`
 
   React.useEffect(() => setName(host.Name), [host.Name])
+  React.useEffect(() => setGroupId(host.GroupID ?? 0), [host.GroupID])
+  React.useEffect(() => {
+    void apiService.getGroups().then(setGroups)
+  }, [])
 
   const debouncedSaveName = useDebouncedCallback(async (value: string) => {
     await apiService.editHost(host.ID, value)
@@ -30,6 +39,12 @@ export function HostDetailCard({ host }: HostDetailCardProps) {
 
   const handleToggleKnown = async () => {
     await apiService.editHost(host.ID, name || host.Name, 'toggle')
+  }
+
+  const handleGroupChange = async (value: string) => {
+    const nextGroupId = Number(value)
+    setGroupId(nextGroupId)
+    await apiService.setHostGroup(host.ID, nextGroupId)
   }
 
   const handleDelete = async () => {
@@ -52,11 +67,26 @@ export function HostDetailCard({ host }: HostDetailCardProps) {
           <Row label="Name">
             <Input value={name} onChange={(e) => handleNameChange(e.target.value)} className="h-8" />
           </Row>
+          <Row label="Group">
+            <Select
+              aria-label={`Group for ${name || host.IP}`}
+              value={String(groupId)}
+              onChange={(e) => void handleGroupChange(e.target.value)}
+              className="h-8 py-0 text-sm"
+            >
+              <option value="0">No group</option>
+              {groups.map((group) => (
+                <option key={group.ID} value={group.ID}>
+                  {group.Name}
+                </option>
+              ))}
+            </Select>
+          </Row>
           <Row label="DNS name">{host.DNS}</Row>
           <Row label="Iface">{host.Iface}</Row>
           <Row label="IP">
-            <a href={`http://${host.IP}`} target="_blank" rel="noreferrer" className="text-sky-700 hover:underline">
-              {host.IP}
+            <a href={hostUrl} target="_blank" rel="noreferrer" className="text-sky-700 hover:underline">
+              {host.Port ? `${host.IP}:${host.Port}` : host.IP}
             </a>
           </Row>
           <Row label="MAC">

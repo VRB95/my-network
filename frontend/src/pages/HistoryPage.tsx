@@ -31,8 +31,11 @@ export function HistoryPage() {
                 {host.Name}
               </Link>
               <br />
-              <a href={`http://${host.IP}`} className="text-xs text-sky-700 hover:underline">
-                {host.IP}
+              <a
+                href={host.Port ? `http://${host.IP}:${host.Port}` : `http://${host.IP}`}
+                className="text-xs text-sky-700 hover:underline"
+              >
+                {host.Port ? `${host.IP}:${host.Port}` : host.IP}
               </a>
             </div>
             <div className="flex-1 pt-1">

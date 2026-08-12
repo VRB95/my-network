@@ -14,11 +14,15 @@ export function HostDetailPage() {
     apiService.getHost(id ?? '0').then(setHost)
   }, [id])
 
+  const handlePortSaved = (port: number) => {
+    setHost((prev) => ({ ...prev, Port: port }))
+  }
+
   return (
     <div className="space-y-4">
       <div className="grid gap-4 md:grid-cols-2">
         <HostDetailCard host={host} />
-        <HostPortScanner ip={host.IP} />
+        <HostPortScanner hostId={host.ID} ip={host.IP} savedPort={host.Port} onPortSaved={handlePortSaved} />
       </div>
       <HostHistoryCard mac={host.Mac} />
     </div>

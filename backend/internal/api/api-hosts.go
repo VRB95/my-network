@@ -3,6 +3,7 @@ package api
 import (
 	"log/slog"
 	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 
@@ -115,6 +116,45 @@ func editHost(c *gin.Context) {
 	}
 
 	gdb.Update("now", host)
+
+	c.IndentedJSON(http.StatusOK, "OK")
+}
+
+type hostPortRequest struct {
+	Port int
+}
+
+// setHostPort godoc
+// @Summary      Set host preferred port
+// @Description  Store the preferred TCP port used when opening a host IP link
+// @Tags         hosts
+// @Produce      json
+// @Param        id    path      string           true  "Host ID"
+// @Param        port  body      hostPortRequest  true  "Preferred port, or 0 to clear"
+// @Success      200   {string}  string           "OK"
+// @Router       /host/{id}/port [patch]
+func setHostPort(c *gin.Context) {
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		c.IndentedJSON(http.StatusBadRequest, gin.H{"error": "invalid host ID"})
+		return
+	}
+
+	var body hostPortRequest
+	if err := c.ShouldBindJSON(&body); err != nil {
+		c.IndentedJSON(http.StatusBadRequest, gin.H{"error": "invalid request body"})
+		return
+	}
+
+	if body.Port < 0 || body.Port > 65535 {
+		c.IndentedJSON(http.StatusBadRequest, gin.H{"error": "port must be between 0 and 65535"})
+		return
+	}
+
+	if err := gdb.SetHostPort(id, body.Port); err != nil {
+		c.IndentedJSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
 
 	c.IndentedJSON(http.StatusOK, "OK")
 }

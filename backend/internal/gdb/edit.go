@@ -44,3 +44,8 @@ func Clear(table string) {
 func SetHostGroup(id, groupID int) error {
 	return db.Table("now").Where("\"ID\" = ?", id).Update("GROUP_ID", groupID).Error
 }
+
+// SetHostPort stores the preferred port for opening a host from the UI.
+func SetHostPort(id, port int) error {
+	return db.Table("now").Where("\"ID\" = ?", id).Update("PORT", port).Error
+}

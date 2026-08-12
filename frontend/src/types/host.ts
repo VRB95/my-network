@@ -11,6 +11,7 @@ export interface Host {
   Known: number
   Now: number
   GroupID: number
+  Port: number
 }
 
 export const emptyHost: Host = {
@@ -25,6 +26,7 @@ export const emptyHost: Host = {
   Known: 0,
   Now: 0,
   GroupID: 0,
+  Port: 0,
 }
 
 /** Fields a host list can be sorted or filtered by. */

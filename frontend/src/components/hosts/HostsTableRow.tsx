@@ -50,6 +50,7 @@ export function HostsTableRow({ host, index }: HostsTableRowProps) {
 
   const isSelected = selectedIds.includes(host.ID)
   const detailClass = cn(!showDetails && 'hidden')
+  const hostUrl = host.Port ? `http://${host.IP}:${host.Port}` : `http://${host.IP}`
 
   return (
     <UiTableRow>
@@ -84,8 +85,8 @@ export function HostsTableRow({ host, index }: HostsTableRowProps) {
       <TableCell className={detailClass}>{host.Iface}</TableCell>
 
       <TableCell>
-        <a href={`http://${host.IP}`} target="_blank" rel="noreferrer" className="whitespace-nowrap text-sky-700 hover:underline dark:text-sky-400">
-          {host.IP}
+        <a href={hostUrl} target="_blank" rel="noreferrer" className="whitespace-nowrap text-sky-700 hover:underline dark:text-sky-400">
+          {host.Port ? `${host.IP}:${host.Port}` : host.IP}
         </a>
       </TableCell>
 

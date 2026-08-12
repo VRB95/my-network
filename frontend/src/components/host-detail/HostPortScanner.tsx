@@ -8,16 +8,23 @@ const MIN_PORT = 1
 const MAX_PORT = 65535
 
 interface HostPortScannerProps {
+  hostId: number
   ip: string
+  savedPort: number
+  onPortSaved: (port: number) => void
 }
 
-export function HostPortScanner({ ip }: HostPortScannerProps) {
+export function HostPortScanner({ hostId, ip, savedPort, onPortSaved }: HostPortScannerProps) {
   const [beginText, setBeginText] = React.useState('')
   const [endText, setEndText] = React.useState('')
+  const [portText, setPortText] = React.useState('')
   const [currentPort, setCurrentPort] = React.useState('')
   const [foundPorts, setFoundPorts] = React.useState<number[]>([])
+  const [isSaving, setIsSaving] = React.useState(false)
 
   const stopRef = React.useRef(false)
+
+  React.useEffect(() => setPortText(savedPort ? String(savedPort) : ''), [savedPort])
 
   const clampPort = (text: string, fallback: number) => {
     const value = Number(text)
@@ -36,9 +43,26 @@ export function HostPortScanner({ ip }: HostPortScannerProps) {
       setCurrentPort(String(port))
       const isOpen = await apiService.scanPort(ip, port)
       if (isOpen) {
-        setFoundPorts((prev) => [...prev, port])
+        setFoundPorts((prev) => (prev.includes(port) ? prev : [...prev, port]))
       }
     }
+  }
+
+  const savePort = async (port: number) => {
+    if (!hostId) return
+    try {
+      setIsSaving(true)
+      await apiService.setHostPort(hostId, port)
+      onPortSaved(port)
+    } finally {
+      setIsSaving(false)
+    }
+  }
+
+  const handleSaveManualPort = () => {
+    const port = portText === '' ? 0 : Number(portText)
+    if (Number.isNaN(port) || port < 0 || port > MAX_PORT) return
+    void savePort(port)
   }
 
   const handleScan = () => {
@@ -66,6 +90,18 @@ export function HostPortScanner({ ip }: HostPortScannerProps) {
           <Button onClick={handleScan}>Scan</Button>
         </div>
 
+        <div className="flex items-center gap-2">
+          <Input
+            placeholder="Preferred port"
+            value={portText}
+            onChange={(e) => setPortText(e.target.value)}
+            className="h-8"
+          />
+          <Button size="sm" variant="outline" onClick={handleSaveManualPort} disabled={isSaving || !hostId}>
+            Save
+          </Button>
+        </div>
+
         {currentPort !== '' && (
           <div className="flex items-center justify-between">
             <Button variant="warning" size="sm" onClick={handleStopOrContinue}>
@@ -77,15 +113,16 @@ export function HostPortScanner({ ip }: HostPortScannerProps) {
 
         <div className="flex flex-wrap gap-3">
           {foundPorts.map((port) => (
-            <a
+            <button
               key={port}
-              href={`http://${ip}:${port}`}
-              target="_blank"
-              rel="noreferrer"
-              className="text-sky-700 hover:underline"
+              type="button"
+              onClick={() => void savePort(port)}
+              className="text-sky-700 hover:underline disabled:cursor-not-allowed disabled:text-slate-400"
+              disabled={isSaving}
             >
               {port}
-            </a>
+              {savedPort === port ? ' selected' : ''}
+            </button>
           ))}
         </div>
       </CardContent>
